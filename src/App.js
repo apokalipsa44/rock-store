@@ -6,20 +6,27 @@ import Cart from "./components/Cart";
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState({});
 
   async function fetchProducts() {
-    const {data}= await commerce.products.list();
+    const { data } = await commerce.products.list();
     setProducts(data);
   }
 
+  const fetchCart = async () => {
+    const cart = await commerce.cart.retrieve();
+    setCart(cart);
+  };
+
   useEffect(() => {
-    fetchProducts()
-  },[]);
+    fetchProducts();
+    fetchCart();
+  }, []);
 
   return (
     <div>
       <Products products={products} />
-      <Cart/>
+      <Cart cart={cart} />
     </div>
   );
 }
