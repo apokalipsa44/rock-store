@@ -8,10 +8,12 @@ function CartItems({ items }) {
     setCartItems(items);
   }, [items]);
 
- 
-  return <div>
-  {(cartItems)&&(cartItems.map(item=><CartItem key={item.id} item={item}/>))}
-  </div>;
+  return (
+    <div>
+      {cartItems &&
+        cartItems.map((item) => <CartItem key={item.id} item={item} />)}
+    </div>
+  );
 }
 
 export default CartItems;

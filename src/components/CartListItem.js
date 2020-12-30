@@ -1,12 +1,12 @@
-import React  from "react";
 import { Grid, Typography } from "@material-ui/core";
+import React from "react";
 
-
-function CartItem({ item }) {
+function CartListItem({ item }) {
+  
+    console.log("from item " + item.name);
 
   return (
-    <>
-       <Grid container spacing={2}>
+    <Grid container>
       <Grid item>
         <Typography>{item.name}</Typography>
       </Grid>
@@ -14,11 +14,10 @@ function CartItem({ item }) {
         <Typography  dangerouslySetInnerHTML={{ __html: item.quantity }}></Typography>
       </Grid>
       <Grid item>
-        <Typography>{item.line_total.formatted}</Typography>
+        <Typography></Typography>
       </Grid>
     </Grid>
-    </>
   );
 }
 
-export default CartItem;
+export default CartListItem;
