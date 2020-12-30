@@ -12,7 +12,6 @@ import commerce from "../utils/Commerce";
 
 function ProductItem({ product }) {
   const [quantity, setQuantity] = useState(0);
-  console.log(product);
 
   const increaseCount = () => {
     setQuantity(quantity + 1);
