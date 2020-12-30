@@ -3,6 +3,7 @@ import Products from "./views/Products";
 import commerce from "./utils/Commerce";
 import { useState, useEffect } from "react";
 import Cart from "./components/Cart";
+import AppBar from "./views/AppBar";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -25,6 +26,7 @@ function App() {
 
   return (
     <div>
+      <AppBar counter={cart.total_items} />
       <Products products={products} />
       <Cart cart={cart} />
     </div>
