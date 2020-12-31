@@ -9,15 +9,15 @@ function App() {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState({});
 
-  async function fetchProducts() {
-    const { data } = await commerce.products.list();
-    setProducts(data);
-  }
+async function fetchProducts() {
+      const { data } = await commerce.products.list();
+      setProducts(data);
+    }
 
-  const fetchCart = async () => {
-    const cart = await commerce.cart.retrieve();
-    setCart(cart);
-  };
+    async function fetchCart() {
+      const cart = await commerce.cart.retrieve();
+      setCart(cart);
+    }
 
   useEffect(() => {
     fetchProducts();

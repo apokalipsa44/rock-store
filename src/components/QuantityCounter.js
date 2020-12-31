@@ -1,25 +1,30 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { Box, Grid } from "@material-ui/core";
 
 function QuantityCounter({ quantity, increaseCount, decreaseCount }) {
   return (
-    <div>
-      <Button display="inline" onClick={() => decreaseCount()}>
-        -
-      </Button>
-      <Typography
-        display="inline"
-        variant="body1"
-        color="textSecondary"
-        component="p"
-      >
-        {quantity}
-      </Typography>
-      <Button display="inline" onClick={() => increaseCount()}>
-        +
-      </Button>
-    </div>
+    <Grid container direction="row" justify="flex-start" alignItems="baseline">
+      <Grid item>
+        <Button onClick={() => decreaseCount()}>-</Button>
+      </Grid>
+      <Grid item>
+        <Typography
+          variant="body1"
+          color="textSecondary"
+          component="p"
+          ml={2}
+          mr={2}
+        >
+          {quantity}
+        </Typography>
+      </Grid>
+
+      <Grid item>
+        <Button onClick={() => increaseCount()}>+</Button>
+      </Grid>
+    </Grid>
   );
 }
 
