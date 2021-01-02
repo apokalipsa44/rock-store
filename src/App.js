@@ -4,33 +4,29 @@ import commerce from "./utils/Commerce";
 import { useState, useEffect } from "react";
 import Cart from "./components/Cart";
 import AppBar from "./views/AppBar";
-import axios from "axios";
 
-function App() {
+const useProducts = () => {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState({});
-
-  axios.defaults.timeout = 2000;
-  axios.defaults.headers = {
-    "X-Authorization": process.env.REACT_APP_COMMERCE_API_KEY,
-    Accept: "application/json",
-    "Content-Type": "application/json",
-  };
 
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const {data} = await axios.get("https://api.chec.io/v1/products");
-        setProducts(data.data);
-      } catch (error) {}
-      // try {
-      //   const { data } = await commerce.products.list();
-      //   setProducts(data);
-      // } catch (error) {
-      //   console.log("error", error);
-      // }
+        const { data } = await commerce.products.list();
+        setProducts(data);
+      } catch (error) {
+        console.log("error", error);
+      }
     }
+    fetchProducts();
+    
+  }, [products]);
+  return products;
+};
 
+const useCart = () => {
+  const [cart, setCart] = useState({});
+
+  useEffect(() => {
     async function fetchCart() {
       try {
         const cart = await commerce.cart.retrieve();
@@ -39,15 +35,24 @@ function App() {
         console.log("error", error);
       }
     }
-    fetchProducts();
     fetchCart();
-  });
+  }, [cart]);
+
+  return cart;
+};
+
+function App() {
+  // const [currentProducts, setCurrentProducts] = useState([]);
+  // const [currentCart, setCurrentCart] = useState({});
+
+  const currentProducts = useProducts();
+  const currentCart = useCart();
 
   return (
     <div>
-      <AppBar counter={cart.total_items} />
-      <Products products={products} />
-      <Cart cart={cart} />
+      {currentCart && <AppBar counter={currentCart.total_items} />}
+      {currentProducts && <Products products={currentProducts} />}
+      {currentCart && <Cart cart={currentCart} />}
     </div>
   );
 }
