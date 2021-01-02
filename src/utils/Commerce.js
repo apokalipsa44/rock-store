@@ -1,5 +1,42 @@
 import Commerce from '@chec/commerce.js';
+import { useState, useEffect } from "react";
 
  const commerce = new Commerce(process.env.REACT_APP_COMMERCE_API_KEY, true);
+
+ export const useProducts = () => {
+    const [products, setProducts] = useState([]);
+  
+    useEffect(() => {
+      async function fetchProducts() {
+        try {
+          const { data } = await commerce.products.list();
+          setProducts(data);
+        } catch (error) {
+          console.log("error", error);
+        }
+      }
+      fetchProducts();
+      
+    }, [products]);
+    return products;
+  };
+  
+  export const useCart = () => {
+    const [cart, setCart] = useState({});
+  
+    useEffect(() => {
+      async function fetchCart() {
+        try {
+          const cart = await commerce.cart.retrieve();
+          setCart(cart);
+        } catch (error) {
+          console.log("error", error);
+        }
+      }
+      fetchCart();
+    }, [cart]);
+  
+    return cart;
+  };
 
  export default commerce;
