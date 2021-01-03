@@ -5,13 +5,14 @@ import Cart from "./components/Cart";
 import AppBar from "./views/AppBar";
 
 
-
 function App() {
   // const [currentProducts, setCurrentProducts] = useState([]);
   // const [currentCart, setCurrentCart] = useState({});
 
   const currentProducts = useProducts();
   const currentCart = useCart();
+  // setCurrentProducts(useProducts());
+  // setCurrentCart(useCart());
 
   return (
     <div>

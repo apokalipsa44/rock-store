@@ -21,8 +21,9 @@ function ProductItem({ product }) {
     setQuantity(quantity - 1);
   };
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (e) => {
     commerce.cart.add(product.id, quantity).then((json) => console.log(json));
+    setQuantity(0);
   };
   return (
     <Card style={{ width: "280px", height: "345px" }}>

@@ -1,7 +1,8 @@
 import Commerce from '@chec/commerce.js';
 import { useState, useEffect } from "react";
 
- const commerce = new Commerce(process.env.REACT_APP_COMMERCE_API_KEY, true);
+
+const commerce = new Commerce(process.env.REACT_APP_COMMERCE_API_KEY, true);
 
  export const useProducts = () => {
     const [products, setProducts] = useState([]);
