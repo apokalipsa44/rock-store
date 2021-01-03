@@ -1,11 +1,9 @@
 import React from "react";
 import Products from "./views/Products";
-import {useProducts, useCart} from "./utils/Commerce";
+import { useProducts, useCart } from "./utils/Commerce";
 import { useState, useEffect } from "react";
 import Cart from "./components/Cart";
 import AppBar from "./views/AppBar";
-
-
 
 function App() {
   // const [currentProducts, setCurrentProducts] = useState([]);
@@ -13,6 +11,8 @@ function App() {
 
   const currentProducts = useProducts();
   const currentCart = useCart();
+  // setCurrentProducts(useProducts());
+  // setCurrentCart(useCart());
 
   return (
     <div>
