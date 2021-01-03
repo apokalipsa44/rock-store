@@ -10,7 +10,7 @@ import { Grid } from "@material-ui/core";
 import QuantityCounter from "./QuantityCounter";
 import commerce from "../utils/Commerce";
 
-function ProductItem({ product }) {
+function ProductItem({ product, fetchCart }) {
   const [quantity, setQuantity] = useState(0);
 
   const increaseCount = () => {
@@ -24,6 +24,7 @@ function ProductItem({ product }) {
   const handleAddToCart = (e) => {
     commerce.cart.add(product.id, quantity).then((json) => console.log(json));
     setQuantity(0);
+    fetchCart()
   };
   return (
     <Card style={{ width: "280px", height: "345px" }}>

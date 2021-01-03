@@ -18,7 +18,7 @@ const commerce = new Commerce(process.env.REACT_APP_COMMERCE_API_KEY, true);
       }
       fetchProducts();
       
-    }, [products]);
+    }, []);
     return products;
   };
   
@@ -35,7 +35,7 @@ const commerce = new Commerce(process.env.REACT_APP_COMMERCE_API_KEY, true);
         }
       }
       fetchCart();
-    }, [cart]);
+    }, []);
   
     return cart;
   };
