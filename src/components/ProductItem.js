@@ -12,19 +12,19 @@ import commerce from "../utils/Commerce";
 
 function ProductItem({ product, fetchCart }) {
   const [quantity, setQuantity] = useState(0);
-
+  
   const increaseCount = () => {
     setQuantity(quantity + 1);
   };
-
+  
   const decreaseCount = () => {
     setQuantity(quantity - 1);
   };
-
-  const handleAddToCart = (e) => {
+  
+  const handleAddToCart = () => {
     commerce.cart.add(product.id, quantity).then((json) => console.log(json));
     setQuantity(0);
-    fetchCart()
+    fetchCart();
   };
   return (
     <Card style={{ width: "280px", height: "345px" }}>

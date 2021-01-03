@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Products from "./views/Products";
-import commerce, { useCart, useProducts } from "./utils/Commerce";
+import commerce,{ fetchCart, useCart, useProducts } from "./utils/Commerce";
 import Cart from "./components/Cart";
 import AppBar from "./views/AppBar";
 
@@ -15,7 +15,6 @@ function App() {
     } catch (error) {
       console.log("error", error);
     }
-    console.log("cartupdated");
   }
 
   useEffect(() => {
@@ -23,9 +22,6 @@ function App() {
   }, []);
 
   const currentProducts = useProducts();
-  //  currentCart = useCart();
-  // setCurrentProducts(useProducts());
-  // setCurrentCart(useCart());
 
   return (
     <div>
