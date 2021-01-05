@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import Badge from "@material-ui/core/Badge";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
+import { StateContext } from "../utils/Context";
 
-function AppBar({ counter }) {
+function AppBar() {
+  const { currentCart } = useContext(StateContext);
   return (
     <div>
       Appbar
-      <Badge badgeContent={counter} color="primary">
+      <Badge badgeContent={currentCart.total_items} color="primary">
         <ShoppingCartOutlinedIcon />
       </Badge>
     </div>

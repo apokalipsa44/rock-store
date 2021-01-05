@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
@@ -9,22 +9,26 @@ import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
 import QuantityCounter from "./QuantityCounter";
 import commerce from "../utils/Commerce";
+import {StateContext}  from "../utils/Context";
 
-function ProductItem({ product, fetchCart }) {
+function ProductItem({ product }) {
+  const { updateCart } = useContext(StateContext);
+
   const [quantity, setQuantity] = useState(0);
-  
+
   const increaseCount = () => {
     setQuantity(quantity + 1);
   };
-  
+
   const decreaseCount = () => {
     setQuantity(quantity - 1);
   };
-  
-  const handleAddToCart = () => {
-    commerce.cart.add(product.id, quantity).then((json) => console.log(json));
+
+  const handleAddToCart = async () => {
+    await commerce.cart.add(product.id, quantity).then((json) => console.log(json));
     setQuantity(0);
-    fetchCart();
+    updateCart();
+  
   };
   return (
     <Card style={{ width: "280px", height: "345px" }}>

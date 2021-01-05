@@ -1,36 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import { fetchCart, useProducts } from "./utils/Commerce";
+import { StateContext } from "./utils/Context";
 import Products from "./views/Products";
-import commerce,{ fetchCart, useCart, useProducts } from "./utils/Commerce";
 import Cart from "./components/Cart";
 import AppBar from "./views/AppBar";
 
 function App() {
-  // const [currentProducts, setCurrentProducts] = useState([]);
   const [currentCart, setCurrentCart] = useState({});
-
-  async function fetchCart() {
-    try {
-      const cart = await commerce.cart.retrieve();
-      setCurrentCart(cart);
-    } catch (error) {
-      console.log("error", error);
-    }
-  }
+  const products = useProducts();
 
   useEffect(() => {
-    fetchCart();
+    updateCart();
   }, []);
 
-  const currentProducts = useProducts();
+  const updateCart = async () => {
+    const cart = await fetchCart();
+    setCurrentCart(cart);
+  };
+
+  const state = {
+    currentCart,
+    products,
+    updateCart,
+  };
 
   return (
-    <div>
-      {currentCart && <AppBar counter={currentCart.total_items} />}
-      {currentProducts && (
-        <Products products={currentProducts} fetchCart={fetchCart} />
-      )}
-      {currentCart && <Cart cart={currentCart} />}
-    </div>
+    <StateContext.Provider value={state}>
+      <AppBar />
+      <Products />
+      <Cart />
+    </StateContext.Provider>
   );
 }
 
