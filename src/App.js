@@ -1,39 +1,42 @@
-import React, { useEffect, useState } from "react";
-import Products from "./views/Products";
-import commerce,{ fetchCart, useCart, useProducts } from "./utils/Commerce";
-import Cart from "./components/Cart";
-import AppBar from "./views/AppBar";
-import {StateContext} from './Context'
+import React, { useState, useEffect } from "react";
+import { fetchCart, useCart, useProducts } from "./utils/Commerce";
+import { StateContext } from "./Context";
+import Store from "./Store";
 
 function App() {
-  // const [currentProducts, setCurrentProducts] = useState([]);
   const [currentCart, setCurrentCart] = useState({});
-
-  
+  const products = useProducts();
+  const [updateCart, setUpdateCart] = useState(false);
 
   useEffect(() => {
-    (async function fetchCart() {
-    try {
-      const cart = await commerce.cart.retrieve();
-      setCurrentCart(cart);
-    } catch (error) {
-      console.log("error", error);
-    }
-  })()
-    
+    forceUpdateCart()
   }, []);
 
-  
+  const setCartUpdated = () => {
+    setUpdateCart(true);
+    console.log("context state updated");
+  };
+  const forceUpdateCart = async () => {
+    if (true) {
+      const cart = await fetchCart();
+      setCurrentCart(cart);
+    }
 
-  const currentProducts = useProducts();
+    console.log("currentCart from froceupdateCart", currentCart);
+    console.log("updateCart nowy kart", updateCart);
+  };
+
+  const state = {
+    currentCart,
+    updateCart,
+    products,
+    setCartUpdated,
+    forceUpdateCart,
+  };
 
   return (
-    <StateContext.Provider value={currentCart}>
-      {currentCart && <AppBar counter={currentCart.total_items} />}
-      {currentProducts && (
-        <Products products={currentProducts} setCurrentCart={setCurrentCart} />
-      )}
-      {currentCart && <Cart cart={currentCart} />}
+    <StateContext.Provider value={state}>
+      <Store />
     </StateContext.Provider>
   );
 }

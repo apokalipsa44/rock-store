@@ -11,10 +11,11 @@ import QuantityCounter from "./QuantityCounter";
 import commerce from "../utils/Commerce";
 import { StateContext } from "../Context";
 
-function ProductItem({ product, setCurrentCart }) {
+function ProductItem({ product }) {
+  const { setCartUpdated, forceUpdateCart } = useContext(StateContext);
+
   const [quantity, setQuantity] = useState(0);
-  const state = useContext(StateContext);
-  console.log('state', state)
+
   const increaseCount = () => {
     setQuantity(quantity + 1);
   };
@@ -23,10 +24,13 @@ function ProductItem({ product, setCurrentCart }) {
     setQuantity(quantity - 1);
   };
 
-  const handleAddToCart = () => {
-    commerce.cart.add(product.id, quantity).then((json) => console.log(json));
+  const handleAddToCart = async () => {
+    await commerce.cart.add(product.id, quantity).then((json) => console.log(json));
     setQuantity(0);
-    setCurrentCart();
+    setCartUpdated();
+    forceUpdateCart();
+    console.log('forceUpdateCart', forceUpdateCart)
+    console.log("updateCart btn");
   };
   return (
     <Card style={{ width: "280px", height: "345px" }}>

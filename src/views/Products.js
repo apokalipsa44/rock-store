@@ -1,7 +1,12 @@
 import { Grid } from "@material-ui/core";
 import ProductItem from "../components/ProductItem";
+import {useContext} from 'react'
+import { StateContext } from "../Context";
 
-function Products({ products, setCurrentCart }) {
+
+function Products() {
+const {products}=useContext(StateContext)
+console.log('products', products)
   return (
     <Grid
       container
@@ -12,7 +17,7 @@ function Products({ products, setCurrentCart }) {
     >
       {products.map((product) => (
         <Grid item key={product.id} xs={12} sm={6} md={3} lg="auto">
-          <ProductItem product={product} setCurrentCart={setCurrentCart} />
+          <ProductItem product={product}  />
         </Grid>
       ))}
     </Grid>
