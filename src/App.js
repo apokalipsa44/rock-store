@@ -4,6 +4,7 @@ import { StateContext } from "./utils/Context";
 import Products from "./views/Products";
 import Cart from "./components/Cart";
 import AppBar from "./views/AppBar";
+import CartDrawer from "./views/CartDrawer";
 
 function App() {
   const [currentCart, setCurrentCart] = useState({});
@@ -28,7 +29,7 @@ function App() {
     <StateContext.Provider value={state}>
       <AppBar />
       <Products />
-      <Cart />
+      <CartDrawer />
     </StateContext.Provider>
   );
 }
