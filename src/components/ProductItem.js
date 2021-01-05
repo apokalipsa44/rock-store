@@ -9,10 +9,10 @@ import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
 import QuantityCounter from "./QuantityCounter";
 import commerce from "../utils/Commerce";
-import { StateContext } from "../Context";
+import {StateContext}  from "../utils/Context";
 
 function ProductItem({ product }) {
-  const { setCartUpdated, forceUpdateCart } = useContext(StateContext);
+  const { updateCart } = useContext(StateContext);
 
   const [quantity, setQuantity] = useState(0);
 
@@ -27,10 +27,8 @@ function ProductItem({ product }) {
   const handleAddToCart = async () => {
     await commerce.cart.add(product.id, quantity).then((json) => console.log(json));
     setQuantity(0);
-    setCartUpdated();
-    forceUpdateCart();
-    console.log('forceUpdateCart', forceUpdateCart)
-    console.log("updateCart btn");
+    updateCart();
+  
   };
   return (
     <Card style={{ width: "280px", height: "345px" }}>

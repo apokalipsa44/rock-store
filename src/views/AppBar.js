@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import Badge from "@material-ui/core/Badge";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
-import { StateContext } from "../Context";
+import { StateContext } from "../utils/Context";
 
 function AppBar() {
-  const {currentCart}=useContext(StateContext)
+  const { currentCart } = useContext(StateContext);
   return (
     <div>
       Appbar
