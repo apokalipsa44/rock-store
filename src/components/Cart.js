@@ -1,12 +1,14 @@
-import { Button } from "@material-ui/core";
+import {  Button } from "@material-ui/core";
 import React, { useContext } from "react";
 import CartItems from "./CartItems";
-import {StateContext}  from "../utils/Context";
+import { StateContext } from "../utils/Context";
 
 function Cart() {
   const { currentCart } = useContext(StateContext);
+  
+  
   return (
-    <div>
+    <div  style={ {width: '60vw'} }>
       <CartItems items={currentCart.line_items} />
       <Button onClick={() => console.log(currentCart)}>cart</Button>
     </div>
