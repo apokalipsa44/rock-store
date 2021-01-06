@@ -5,7 +5,6 @@ import { StateContext } from "../utils/Context";
 
 function CartDrawer() {
   const { isDrawerOpen, setIsDrawerOpen } = useContext(StateContext);
-
   const toggleDrawer = () => (event) => {
     if (
       event.type === "keydown" &&
@@ -18,9 +17,16 @@ function CartDrawer() {
   };
 
   return (
-    <Drawer variant="temporary" open={isDrawerOpen} onClose={toggleDrawer()}>
-      <Cart />
-    </Drawer>
+    
+      <Drawer
+        anchor="right"
+        variant="temporary"
+        open={isDrawerOpen}
+        onClose={toggleDrawer()}
+      >
+        <Cart />
+      </Drawer>
+    
   );
 }
 
