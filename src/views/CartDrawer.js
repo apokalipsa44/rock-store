@@ -1,21 +1,27 @@
-import React, {useState} from "react";
-import Drawer from '@material-ui/core/Drawer';
+import React, { useContext } from "react";
+import Drawer from "@material-ui/core/Drawer";
 import Cart from "../components/Cart";
-
+import { StateContext } from "../utils/Context";
 
 function CartDrawer() {
-  const [isOpen, setIsOpen] = useState(true)
+  const { isDrawerOpen, setIsDrawerOpen } = useContext(StateContext);
+
   const toggleDrawer = () => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
       return;
     }
 
-    setIsOpen(!isOpen);
+    setIsDrawerOpen(!isDrawerOpen);
   };
 
   return (
-    <Drawer variant="temporary" open={isOpen} onClose={toggleDrawer()}><Cart/></Drawer>
-  )
+    <Drawer variant="temporary" open={isDrawerOpen} onClose={toggleDrawer()}>
+      <Cart />
+    </Drawer>
+  );
 }
 
 export default CartDrawer;
