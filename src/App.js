@@ -4,10 +4,11 @@ import { StateContext } from "./utils/Context";
 import Products from "./views/Products";
 import AppBar from "./views/AppBar";
 import CartDrawer from "./views/CartDrawer";
+import Checkout from "./views/Checkout";
 
 function App() {
   const [currentCart, setCurrentCart] = useState({});
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const products = useProducts();
 
   useEffect(() => {
@@ -24,7 +25,7 @@ function App() {
     products,
     updateCart,
     isDrawerOpen,
-    setIsDrawerOpen
+    setIsDrawerOpen,
   };
 
   return (
@@ -32,6 +33,7 @@ function App() {
       <AppBar />
       <Products />
       <CartDrawer />
+      <Checkout />
     </StateContext.Provider>
   );
 }
