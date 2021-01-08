@@ -38,6 +38,42 @@ export const useCart = () => {
   return cart;
 };
 
+export const fetchCheckoutToken = async () => {
+  let token = {};
+  try {
+    token = await commerce.checkout.generateTokenFrom(
+      "cart",
+      commerce.cart.id()
+    );
+  } catch (error) {
+    console.log("error", error);
+  }
+  return token;
+};
+
+export const fetchCountries = async (checkoutToken) => {
+  try {
+    const { countries } = await commerce.services.localeListShippingCountries(
+      checkoutToken
+    );
+    return countries;
+  } catch (error) {
+    console.log("error", error);
+  }
+};
+export const fetchZones = async (countryCode) => {
+  try {
+      const { subdivisions } = await commerce.services.localeListSubdivisions(countryCode);
+
+     console.log('subdivisions', subdivisions)
+    return subdivisions;
+  } catch (error) {
+    console.log("error", error);
+  }
+};
+
+
+
 export async function fetchCart() {
   let cart = {};
   try {
