@@ -7,9 +7,9 @@ import {
   MenuItem,
 } from "@material-ui/core";
 
-function DropdownSelector({ name, id, label, options, onChange }) {
+function DropdownSelector({  id, label, options, onChange, selectedOption }) {
   const [itemLabels, setItemLabels] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState()
+  // const [selectedCountry, setSelectedCountry] = useState()
   console.log("itemLabels", itemLabels);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ function DropdownSelector({ name, id, label, options, onChange }) {
     <Grid item xs={12} sm={6}>
       <FormControl style={{ width: 240 }}>
         <InputLabel htmlFor={id}>{label}</InputLabel>
-        <Select value={selectedCountry} onChange={(e)=>setSelectedCountry(e.target.value)}>
+        <Select value={selectedOption} onChange={onChange}>
      
           {itemLabels &&
             itemLabels.map(object => {

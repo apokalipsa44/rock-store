@@ -6,13 +6,12 @@ import Button from "@material-ui/core/Button";
 import ShippingForm from "./forms/ShippingForm";
 import PaymentForm from "./forms/PaymentForm";
 import CheckoutSummary from "./CheckoutSummary";
-import { Box, Container } from "@material-ui/core";
+import {  Container } from "@material-ui/core";
 import { StateContext } from "../../utils/Context";
 
 function CheckoutForm() {
   const [activeStep, setActiveStep] = useState(0);
   const {checkoutToken} = useContext(StateContext);
-  console.log("checkoutToken", checkoutToken);
 
   const steps = ["Shipment details", "Payment details"];
 

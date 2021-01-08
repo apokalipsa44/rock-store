@@ -28,7 +28,6 @@ function ShippingForm({ checkoutToken }) {
   const updateCountries = async (checkoutToken) => {
     const countries = await fetchCountries(checkoutToken);
     setCountries(countries);
-    // setShippingCountry(Object.keys(countries)[0]);
   };
 
   const updateZones = async (countryCode) => {
@@ -40,9 +39,9 @@ function ShippingForm({ checkoutToken }) {
     if (checkoutToken) updateCountries(checkoutToken.id);
   }, [checkoutToken]);
 
-  // useEffect(() => {
-  //   if (shippingCountry) updateZones(shippingCountry);
-  // }, [shippingCountry]);
+  useEffect(() => {
+    if (shippingCountry) updateZones(Object.keys(shippingCountry));
+  }, [shippingCountry]);
 
   const methods = useForm();
 
@@ -92,6 +91,7 @@ function ShippingForm({ checkoutToken }) {
                 <InputField name="zipCode" label="ZIP Code" required={true} />
                 <InputField name="city" label="City" required={true} />
                 <DropdownSelector
+                selectedOption={shippingCountry}
                   id="country"
                   label="Country"
                   options={countries}
