@@ -63,16 +63,33 @@ export const fetchCountries = async (checkoutToken) => {
 };
 export const fetchZones = async (countryCode) => {
   try {
-      const { subdivisions } = await commerce.services.localeListSubdivisions(countryCode);
+    const { subdivisions } = await commerce.services.localeListSubdivisions(
+      countryCode
+    );
 
-     console.log('subdivisions', subdivisions)
+    console.log("subdivisions", subdivisions);
     return subdivisions;
   } catch (error) {
     console.log("error", error);
   }
 };
+export const fetchRates = async (checkoutTokenId, country, region) => {
+  try {
+    const options = await commerce.checkout.getShippingOptions(
+      checkoutTokenId,
+      {
+        country: country[0],
+        region: region[0],
+      }
+    );
 
 
+    console.log("subdivisions>>", options);
+    return options;
+  } catch (error) {
+    console.log("error", error);
+  }
+};
 
 export async function fetchCart() {
   let cart = {};
