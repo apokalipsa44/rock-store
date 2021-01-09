@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Container,
   FormControl,
@@ -7,6 +8,7 @@ import {
   Select,
   Typography,
   InputLabel,
+  CssBaseline,
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
@@ -69,13 +71,18 @@ function ShippingForm({ checkoutToken, onSubmit }) {
   return (
     <Container>
       <FormProvider {...methods}>
-        <form id='shippingForm' onSubmit={methods.handleSubmit((data) => onSubmit({...data, shippingCountry, shippingCost}))}>
+        <form
+          id="shippingForm"
+          onSubmit={methods.handleSubmit((data) =>
+            onSubmit({ ...data, shippingCountry, shippingCost })
+          )}
+        >
           <Grid
             container
             direction="column"
             justify="flex-start"
-            alignItems="flex-start"
-            spacing={2}
+            alignItems="stretch"
+            spacing={0}
           >
             <Grid item>
               <Paper
@@ -132,7 +139,6 @@ function ShippingForm({ checkoutToken, onSubmit }) {
                       {shippingRates[0].price.formatted_with_code}
                     </Typography>
                   )}
-                  {/* <Button type="submit">Submit</Button> */}
                 </Grid>
               </Paper>
             </Grid>
