@@ -55,7 +55,11 @@ function ShippingForm({ checkoutToken }) {
 
   useEffect(() => {
     if (shippingZone && checkoutToken && shippingCountry)
-      updateRates(checkoutToken.id, Object.keys(shippingCountry), Object.keys(shippingZone));
+      updateRates(
+        checkoutToken.id,
+        Object.keys(shippingCountry),
+        Object.keys(shippingZone)
+      );
   }, [shippingZone]);
 
   const methods = useForm();
@@ -119,7 +123,13 @@ function ShippingForm({ checkoutToken }) {
                   options={shippingZones}
                   onChange={(e) => setShippingZone(e.target.value)}
                 />
-                {shippingRates.length!==0 && console.log("shippingRates>>", shippingRates[0].price.formatted_with_code)}
+                {shippingRates && shippingRates.length !== 0 && (
+                  <Typography>
+                    Shipping cost [{shippingRates[0].description}]:
+                    {shippingRates[0].price.formatted_with_code}
+                  </Typography>
+                )}
+
                 {/* {shippingRates && console.log("shippingRates>>", shippingRates[0].price.formatted_with_code)} */}
               </Grid>
             </Paper>
