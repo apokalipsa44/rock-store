@@ -18,13 +18,13 @@ import {
   fetchZones,
 } from "../../../utils/Commerce";
 
-function ShippingForm({ checkoutToken }) {
+function ShippingForm({ checkoutToken, onSubmit }) {
   const [countries, setCountries] = useState([]);
   const [shippingCountry, setShippingCountry] = useState({});
   const [shippingZones, setShippingZones] = useState({});
   const [shippingZone, setShippingZone] = useState({});
   const [shippingRates, setShippingRates] = useState([]);
-
+  const [shippingCost, setShippingCost] = useState(0);
   const updateCountries = async (checkoutToken) => {
     const countries = await fetchCountries(checkoutToken);
     setCountries(countries);
@@ -44,7 +44,9 @@ function ShippingForm({ checkoutToken }) {
       shippingZone
     );
     setShippingRates(rates);
+    setShippingCost(rates[0].price.raw);
   };
+
   useEffect(() => {
     if (checkoutToken) updateCountries(checkoutToken.id);
   }, [checkoutToken]);
@@ -67,74 +69,75 @@ function ShippingForm({ checkoutToken }) {
   return (
     <Container>
       <FormProvider {...methods}>
-        <Grid
-          container
-          direction="column"
-          justify="flex-start"
-          alignItems="flex-start"
-          spacing={2}
-        >
-          <Grid item>
-            <Paper
-              variant="outlined"
-              style={{
-                backgroundColor: "#f2f3f5",
-                padding: "15px",
-                margin: "10px",
-              }}
-            >
-              <Typography>Personal information</Typography>
-              <Grid container spacing={5}>
-                <InputField name="name" label="Name" required={true} />
-                <InputField name="lastName" label="Last name" required={true} />
-                <InputField
-                  name="phone"
-                  label="Phone number"
-                  required={false}
-                />
-              </Grid>
-            </Paper>
+        <form id='shippingForm' onSubmit={methods.handleSubmit((data) => onSubmit({...data, shippingCountry, shippingCost}))}>
+          <Grid
+            container
+            direction="column"
+            justify="flex-start"
+            alignItems="flex-start"
+            spacing={2}
+          >
+            <Grid item>
+              <Paper
+                variant="outlined"
+                style={{
+                  backgroundColor: "#f2f3f5",
+                  padding: "15px",
+                  margin: "10px",
+                }}
+              >
+                <Typography>Personal information</Typography>
+                <Grid container spacing={5}>
+                  <InputField name="name" label="Name" required />
+                  <InputField name="lastName" label="Last name" required />
+                  <InputField
+                    name="phone"
+                    label="Phone number"
+                    required={false}
+                  />
+                </Grid>
+              </Paper>
+            </Grid>
+            <Grid item>
+              <Paper
+                variant="outlined"
+                style={{
+                  backgroundColor: "#f2f3f5",
+                  padding: "15px",
+                  margin: "10px",
+                }}
+              >
+                <Typography gutterBottom>Address</Typography>
+                <Grid container spacing={5}>
+                  <InputField name="street" label="Street" required />
+                  <InputField name="zipCode" label="ZIP Code" required />
+                  <InputField name="city" label="City" required />
+                  <DropdownSelector
+                    selectedOption={shippingCountry}
+                    id="country"
+                    label="Country"
+                    options={countries}
+                    onChange={(e) => setShippingCountry(e.target.value)}
+                  />
+                  <DropdownSelector
+                    selectedOption={shippingZone}
+                    id="shippingZone"
+                    label="Shipping zones"
+                    options={shippingZones}
+                    onChange={(e) => setShippingZone(e.target.value)}
+                  />
+                  {shippingRates && shippingRates.length !== 0 && (
+                    <Typography>
+                      Shipping cost [{shippingRates[0].description}]:
+                      {shippingRates[0].price.formatted_with_code}
+                    </Typography>
+                  )}
+                  {/* <Button type="submit">Submit</Button> */}
+                </Grid>
+              </Paper>
+            </Grid>
           </Grid>
-          <Grid item>
-            <Paper
-              variant="outlined"
-              style={{
-                backgroundColor: "#f2f3f5",
-                padding: "15px",
-                margin: "10px",
-              }}
-            >
-              <Typography gutterBottom>Address</Typography>
-              <Grid container spacing={5}>
-                <InputField name="street" label="Street" required={true} />
-                <InputField name="zipCode" label="ZIP Code" required={true} />
-                <InputField name="city" label="City" required={true} />
-                <DropdownSelector
-                  selectedOption={shippingCountry}
-                  id="country"
-                  label="Country"
-                  options={countries}
-                  onChange={(e) => setShippingCountry(e.target.value)}
-                />
-                <DropdownSelector
-                  selectedOption={shippingZone}
-                  id="shippingZone"
-                  label="Shipping zones"
-                  options={shippingZones}
-                  onChange={(e) => setShippingZone(e.target.value)}
-                />
-                {shippingRates && shippingRates.length !== 0 && (
-                  <Typography>
-                    Shipping cost [{shippingRates[0].description}]:
-                    {shippingRates[0].price.formatted_with_code}
-                  </Typography>
-                )}
-
-                {/* {shippingRates && console.log("shippingRates>>", shippingRates[0].price.formatted_with_code)} */}
-              </Grid>
-            </Paper>
-          </Grid>
-        </Grid>
+        </form>
       </FormProvider>
     </Container>
   );
