@@ -42,7 +42,7 @@ function CheckoutForm() {
           onSubmit={submitAddressForm}
         />
       );
-    if (activeStep === 1) return <PaymentForm />;
+    if (activeStep === 1) return <PaymentForm onSubmit={submitPaymentForm} shippingData={shippingData}/>;
     if (activeStep === 2) return <CheckoutSummary />;
   };
   return (
@@ -71,8 +71,9 @@ function CheckoutForm() {
           </Button>
         )}
         {activeStep === 1 && (
-          <Button
-            onClick={submitPaymentForm}
+          <Button form="paymentForm"
+            type="submit"
+            
             disabled={activeStep >= steps.length}
           >
             Finish

@@ -10,8 +10,6 @@ import {
 
 function DropdownSelector({  id, label, options, onChange, selectedOption }) {
   const [itemLabels, setItemLabels] = useState([]);
-  // const [selectedCountry, setSelectedCountry] = useState()
-  console.log("itemLabels", itemLabels);
 
   useEffect(() => {
     if (options) {
