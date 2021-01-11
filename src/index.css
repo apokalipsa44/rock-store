@@ -1,0 +1,12 @@
+@font-face {
+    font-family: "Stoned";
+    src: local("Stoned"),
+      url("./assets/fonts/Stoned.ttf") format("truetype");
+    font-weight: normal;
+  }
+  @font-face {
+    font-family: "Stone Hinge";
+    src: local("Stone Hinge"),
+      url("./assets/fonts/StoneHinge.ttf") format("truetype");
+    font-weight: normal;
+  }

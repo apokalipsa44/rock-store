@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Badge from "@material-ui/core/Badge";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 import { StateContext } from "../utils/Context";
-import { Button, AppBar, Typography, Grid, Box } from "@material-ui/core";
+import { Button, AppBar, Typography, Grid, Box, Toolbar } from "@material-ui/core";
 import appBarIcon from "../assets/stones/appbar-icon.png";
 
 function TopBar() {
@@ -15,7 +15,7 @@ function TopBar() {
   return (
     <Box mb={5}>
       <AppBar position="static" color="transparent">
-        <div style={{ padding: "14px", backgroundColor: "#ebfbff" }}>
+        <Toolbar style={{ padding: "14px", backgroundColor: "#ebfbff" }}>
           <Grid
             container
             direction="row"
@@ -48,7 +48,7 @@ function TopBar() {
             </Grid>
             <Grid item><div style={{margin:'15px'}}>
               <Badge badgeContent={currentCart.total_items} color="primary">
-                <Button onClick={handleCartButtonClick}>
+                <Button style={{zIndex:"4000"}} onClick={handleCartButtonClick}>
                   <ShoppingCartOutlinedIcon />
                 </Button>
               </Badge>
@@ -56,7 +56,7 @@ function TopBar() {
               
             </Grid>
           </Grid>
-        </div>
+        </Toolbar>
         <img 
           src={appBarIcon}
           alt="icon"
@@ -65,7 +65,8 @@ function TopBar() {
             top: "-5px",
             right: "-30px",
             width:'400px',
-            height:'180px'
+            height:'180px', 
+            filter: 'drop-shadow(5px 5px 5px #222)'
           }}
         />
       </AppBar>
