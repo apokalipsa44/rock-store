@@ -1,11 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Box, Grid, Paper, Typography, Divider } from "@material-ui/core";
-import { StateContext } from "../../../utils/Context";
 import CartItems from "../../CartItems";
 import PaymentMethod from "./components/PaymentMethod";
 
-function PaymentForm({ onSubmit, shippingData }) {
-  const cart = useContext(StateContext);
+function PaymentForm({ onSubmit, shippingData, cart }) {
   const { line_items } = cart.currentCart;
   const { subtotal } = cart.currentCart;
   console.log("line_items", line_items);

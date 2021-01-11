@@ -45,9 +45,9 @@ export default class CreditCard extends React.Component {
             />
           </Grid>
           <Grid item>
-            <form 
+            <div 
             id='creditCard'
-             onSubmit={this.handleSubmit}>
+            >
               <div>
                 <Input
                   type="tel"
@@ -97,7 +97,7 @@ export default class CreditCard extends React.Component {
                 </div>
               </div>
               <Input type="hidden" name="issuer" value={issuer} />
-            </form>
+            </div>
           </Grid>
         </Grid>
       </div>

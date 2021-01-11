@@ -13,6 +13,8 @@ function CheckoutForm() {
   const [activeStep, setActiveStep] = useState(0);
   const { checkoutToken } = useContext(StateContext);
   const [shippingData, setShippingData] = useState({});
+  const cart = useContext(StateContext);
+ 
   const steps = ["Shipment details", "Payment details"];
 
   const handleNextStep = () => {
@@ -30,6 +32,7 @@ function CheckoutForm() {
     handleNextStep();
   };
   const submitPaymentForm = () => {
+    // cart.empty()
     console.log("payment submitted");
     handleNextStep();
   };
@@ -42,7 +45,7 @@ function CheckoutForm() {
           onSubmit={submitAddressForm}
         />
       );
-    if (activeStep === 1) return <PaymentForm onSubmit={submitPaymentForm} shippingData={shippingData}/>;
+    if (activeStep === 1) return <PaymentForm cart={cart} onSubmit={submitPaymentForm} shippingData={shippingData}/>;
     if (activeStep === 2) return <CheckoutSummary />;
   };
   return (
