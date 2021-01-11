@@ -1,12 +1,10 @@
 import React, { useContext } from "react";
-import { Box, Grid, Paper, Typography, Divider, CssBaseline } from "@material-ui/core";
-import { useForm, FormProvider } from "react-hook-form";
+import { Box, Grid, Paper, Typography, Divider } from "@material-ui/core";
 import { StateContext } from "../../../utils/Context";
 import CartItems from "../../CartItems";
 import PaymentMethod from "./components/PaymentMethod";
 
 function PaymentForm({ onSubmit, shippingData }) {
-  const methods = useForm();
   const cart = useContext(StateContext);
   const { line_items } = cart.currentCart;
   const { subtotal } = cart.currentCart;
@@ -24,12 +22,9 @@ function PaymentForm({ onSubmit, shippingData }) {
 
   return (
     <div>
-      <FormProvider {...methods}>
         <form
           id="paymentForm"
-          onSubmit={methods.handleSubmit((data) =>
-            console.log("onSubmit payment ", data)
-          )}
+          onSubmit={onSubmit}
         >
           <Grid
             container
@@ -98,7 +93,6 @@ function PaymentForm({ onSubmit, shippingData }) {
             </Grid>
           </Grid>
         </form>
-      </FormProvider>
     </div>
   );
 }
