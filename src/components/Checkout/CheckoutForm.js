@@ -32,7 +32,7 @@ function CheckoutForm() {
     handleNextStep();
   };
   const submitPaymentForm = () => {
-    // cart.empty()
+    cart.empty()
     console.log("payment submitted");
     handleNextStep();
   };
