@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { fetchCart, useProducts, fetchCheckoutToken } from "./utils/Commerce";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
 import { StateContext } from "./utils/Context";
 import Products from "./views/Products";
 import AppBar from "./views/AppBar";
@@ -37,10 +39,14 @@ function App() {
 
   return (
     <StateContext.Provider value={state}>
-      <AppBar />
-      <Products />
-      <CartDrawer />
-      <Checkout />
+      <Router>
+        <AppBar />
+        <CartDrawer />
+        <Switch>
+          <Route exact path="/" component={Products} />
+          <Route exact path="/checkout" component={Checkout} />
+        </Switch>
+      </Router>
     </StateContext.Provider>
   );
 }

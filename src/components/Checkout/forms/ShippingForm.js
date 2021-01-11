@@ -1,9 +1,4 @@
-import {
-  Container,
-  Grid,
-  Paper,
-  Typography,
-} from "@material-ui/core";
+import { Container, Grid, Paper, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import InputField from "./InputField";
@@ -21,7 +16,7 @@ function ShippingForm({ checkoutToken, onSubmit }) {
   const [shippingZone, setShippingZone] = useState({});
   const [shippingRates, setShippingRates] = useState([]);
   const [shippingCost, setShippingCost] = useState(0);
-  
+
   const updateCountries = async (checkoutToken) => {
     const countries = await fetchCountries(checkoutToken);
     setCountries(countries);
@@ -41,7 +36,7 @@ function ShippingForm({ checkoutToken, onSubmit }) {
       shippingZone
     );
     setShippingRates(rates);
-    setShippingCost(rates[0].price.raw);
+    if (rates) setShippingCost(rates[0].price.raw);
   };
 
   useEffect(() => {

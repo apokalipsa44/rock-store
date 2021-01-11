@@ -1,10 +1,9 @@
 import { Typography, Button, Fade, Container, Box } from "@material-ui/core";
 import React from "react";
+import { Link } from "react-router-dom";
 
 function CheckoutSummary() {
-  const handleOnClick = () => {
-      
-  };
+ 
   return (
     <Container>
       <Fade timeout={2000} in>
@@ -15,7 +14,7 @@ function CheckoutSummary() {
 
       <Fade timeout={3500} in>
         <Box m={3}>
-          <Button variant="contained" size='large' onClick={handleOnClick}>Back to the store</Button>
+          <Button component={Link}  to='/' variant="contained" size='large' >Back to the store</Button>
         </Box>
       </Fade>
     </Container>
