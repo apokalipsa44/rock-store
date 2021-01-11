@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { fetchCart, useProducts, fetchCheckoutToken } from "./utils/Commerce";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { StateContext } from "./utils/Context";
 import Products from "./views/Products";
-import AppBar from "./views/AppBar";
+import TopBar from "./views/TopBar";
 import CartDrawer from "./views/CartDrawer";
 import Checkout from "./views/Checkout";
+import Footer from "./views/Footer";
 
 function App() {
   const [currentCart, setCurrentCart] = useState({});
@@ -40,12 +40,13 @@ function App() {
   return (
     <StateContext.Provider value={state}>
       <Router>
-        <AppBar />
+        <TopBar />
         <CartDrawer />
         <Switch>
           <Route exact path="/" component={Products} />
           <Route exact path="/checkout" component={Checkout} />
         </Switch>
+        <Footer/>
       </Router>
     </StateContext.Provider>
   );
