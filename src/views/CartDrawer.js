@@ -24,7 +24,7 @@ function CartDrawer() {
         open={isDrawerOpen}
         onClose={toggleDrawer()}
       >
-        <Cart />
+        <Cart toggleDrawer={setIsDrawerOpen} />
       </Drawer>
     
   );
