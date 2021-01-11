@@ -48,7 +48,7 @@ function TopBar() {
             </Grid>
             <Grid item><div style={{margin:'15px'}}>
               <Badge badgeContent={currentCart.total_items} color="primary">
-                <Button style={{zIndex:"4000"}} onClick={handleCartButtonClick}>
+                <Button style={{zIndex:"1150"}} onClick={handleCartButtonClick}>
                   <ShoppingCartOutlinedIcon />
                 </Button>
               </Badge>
@@ -66,7 +66,8 @@ function TopBar() {
             right: "-30px",
             width:'400px',
             height:'180px', 
-            filter: 'drop-shadow(5px 5px 5px #222)'
+            filter: 'drop-shadow(5px 5px 5px #222)',
+            zIndex:'1140'
           }}
         />
       </AppBar>

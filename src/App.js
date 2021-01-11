@@ -46,7 +46,7 @@ function App() {
           <Route exact path="/" component={Products} />
           <Route exact path="/checkout" component={Checkout} />
         </Switch>
-        <Footer/>
+        {/* <Footer/> */}
       </Router>
     </StateContext.Provider>
   );

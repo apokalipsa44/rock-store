@@ -8,13 +8,15 @@ import PaymentForm from "./forms/PaymentForm";
 import CheckoutSummary from "./CheckoutSummary";
 import { Container } from "@material-ui/core";
 import { StateContext } from "../../utils/Context";
+import { emptyCart } from "../../utils/Commerce";
 
 function CheckoutForm() {
   const [activeStep, setActiveStep] = useState(0);
-  const { checkoutToken } = useContext(StateContext);
   const [shippingData, setShippingData] = useState({});
+  const { checkoutToken } = useContext(StateContext);
+  const { updateCart } = useContext(StateContext);
   const cart = useContext(StateContext);
- 
+
   const steps = ["Shipment details", "Payment details"];
 
   const handleNextStep = () => {
@@ -31,9 +33,13 @@ function CheckoutForm() {
     console.log("address submitted", data);
     handleNextStep();
   };
-  const submitPaymentForm = () => {
-    cart.empty()
+
+  const submitPaymentForm = async (event) => {
+    event.preventDefault();
+    await emptyCart();
+    updateCart();
     console.log("payment submitted");
+
     handleNextStep();
   };
 
@@ -45,7 +51,14 @@ function CheckoutForm() {
           onSubmit={submitAddressForm}
         />
       );
-    if (activeStep === 1) return <PaymentForm cart={cart} onSubmit={submitPaymentForm} shippingData={shippingData}/>;
+    if (activeStep === 1)
+      return (
+        <PaymentForm
+          cart={cart}
+          onSubmit={submitPaymentForm}
+          shippingData={shippingData}
+        />
+      );
     if (activeStep === 2) return <CheckoutSummary />;
   };
   return (
@@ -74,9 +87,9 @@ function CheckoutForm() {
           </Button>
         )}
         {activeStep === 1 && (
-          <Button form="paymentForm"
+          <Button
+            form="paymentForm"
             type="submit"
-            
             disabled={activeStep >= steps.length}
           >
             Finish

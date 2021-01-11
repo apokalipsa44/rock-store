@@ -12,7 +12,7 @@ toggleDrawer(false)
   }
  
   return (
-    <div  style={ {width: '60vw'} }>
+    <div  style={ {width: '60vw', marginTop:"20%"} }>
     <Container>
     <Typography gutterBottom variant='h6'>Your cart content</Typography>
       <CartItems items={currentCart.line_items} />
