@@ -27,8 +27,8 @@ function PaymentMethod() {
           label={
             <img
               src={creditCard}
-              width="194px"
-              height="50px"
+              width="116px"
+              height="30px"
               alt="credit card"
             />
           }
@@ -47,8 +47,8 @@ function PaymentMethod() {
           label={
             <img
               src={wireTransfer}
-              width="78px"
-              height="50px"
+              width="62px"
+              height="40px"
               alt="wire transfer"
             />
           }
