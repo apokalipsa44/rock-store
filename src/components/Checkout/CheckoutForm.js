@@ -6,13 +6,13 @@ import Button from "@material-ui/core/Button";
 import ShippingForm from "./forms/ShippingForm";
 import PaymentForm from "./forms/PaymentForm";
 import CheckoutSummary from "./CheckoutSummary";
-import {  Container } from "@material-ui/core";
+import { Container } from "@material-ui/core";
 import { StateContext } from "../../utils/Context";
 
 function CheckoutForm() {
   const [activeStep, setActiveStep] = useState(0);
-  const {checkoutToken} = useContext(StateContext);
-
+  const { checkoutToken } = useContext(StateContext);
+  const [shippingData, setShippingData] = useState({});
   const steps = ["Shipment details", "Payment details"];
 
   const handleNextStep = () => {
@@ -24,9 +24,25 @@ function CheckoutForm() {
     console.log(activeStep);
   };
 
+  const submitAddressForm = (data) => {
+    setShippingData(data);
+    console.log("address submitted", data);
+    handleNextStep();
+  };
+  const submitPaymentForm = () => {
+    console.log("payment submitted");
+    handleNextStep();
+  };
+
   const renderForm = () => {
-    if (activeStep === 0) return <ShippingForm checkoutToken={checkoutToken} />;
-    if (activeStep === 1) return <PaymentForm />;
+    if (activeStep === 0)
+      return (
+        <ShippingForm
+          checkoutToken={checkoutToken}
+          onSubmit={submitAddressForm}
+        />
+      );
+    if (activeStep === 1) return <PaymentForm onSubmit={submitPaymentForm} shippingData={shippingData}/>;
     if (activeStep === 2) return <CheckoutSummary />;
   };
   return (
@@ -45,10 +61,32 @@ function CheckoutForm() {
         <Button disabled={activeStep === 0} onClick={handlePreviousStep}>
           Back
         </Button>
-
-        <Button onClick={handleNextStep} disabled={activeStep >= steps.length}>
-          {activeStep === steps.length - 1 ? "Finish" : "Next"}
-        </Button>
+        {activeStep === 0 && (
+          <Button
+            form="shippingForm"
+            type="submit"
+            disabled={activeStep >= steps.length}
+          >
+            Next
+          </Button>
+        )}
+        {activeStep === 1 && (
+          <Button form="paymentForm"
+            type="submit"
+            
+            disabled={activeStep >= steps.length}
+          >
+            Finish
+          </Button>
+        )}
+        {activeStep >= 2 && (
+          <Button
+            onClick={handleNextStep}
+            disabled={activeStep >= steps.length}
+          >
+            Finish
+          </Button>
+        )}
       </div>
     </Container>
   );

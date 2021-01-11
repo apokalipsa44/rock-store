@@ -5,12 +5,11 @@ import {
   Select,
   InputLabel,
   MenuItem,
+  Box,
 } from "@material-ui/core";
 
 function DropdownSelector({  id, label, options, onChange, selectedOption }) {
   const [itemLabels, setItemLabels] = useState([]);
-  // const [selectedCountry, setSelectedCountry] = useState()
-  console.log("itemLabels", itemLabels);
 
   useEffect(() => {
     if (options) {
@@ -27,7 +26,8 @@ function DropdownSelector({  id, label, options, onChange, selectedOption }) {
 
   return (
     <Grid item xs={12} sm={6}>
-      <FormControl style={{ width: 240 }}>
+    <Box width={1}>
+      <FormControl style={{width:"100%"}} >
         <InputLabel htmlFor={id}>{label}</InputLabel>
         <Select value={selectedOption} onChange={onChange}>
      
@@ -41,6 +41,8 @@ function DropdownSelector({  id, label, options, onChange, selectedOption }) {
             })}
         </Select>
       </FormControl>
+    </Box>
+      
     </Grid>
   );
 }
