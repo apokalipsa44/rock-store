@@ -11,9 +11,10 @@ Working version here: [https://rock-store.herokuapp.com](https://rock-store.hero
 ![](img/react.png) ![](img/material.png) ![](img/commerce.jpg)
 
 
-## Shipping and payment form
+## Shipping and payment forms
 These are just mockups, I don't won't anybody to buy any rocks from me.  
 ![](img/form1.png)
+
 ![](img/form2.png)
 
 ---
