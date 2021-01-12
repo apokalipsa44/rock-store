@@ -8,7 +8,7 @@ Working version here: [https://rock-store.herokuapp.com](https://rock-store.hero
 
 ---
 ## Technologies used
-![](img/react.png) ![](img/material.png) ![](img/commerce.jpg)
+![](img/react-logo.png) ![](img/material.png) ![](img/commerce.jpg)
 
 
 ## Shipping and payment forms
