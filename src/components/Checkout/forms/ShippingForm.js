@@ -10,6 +10,8 @@ import {
 } from "../../../utils/Commerce";
 
 function ShippingForm({ checkoutToken, onSubmit }) {
+  const methods = useForm();
+  console.log("methods: ", methods);
   const [countries, setCountries] = useState([]);
   const [shippingCountry, setShippingCountry] = useState({});
   const [shippingZones, setShippingZones] = useState({});
@@ -56,8 +58,6 @@ function ShippingForm({ checkoutToken, onSubmit }) {
       );
   }, [shippingZone]);
 
-  const methods = useForm();
-
   return (
     <Container>
       <FormProvider {...methods}>
@@ -85,12 +85,27 @@ function ShippingForm({ checkoutToken, onSubmit }) {
               >
                 <Typography>Personal information</Typography>
                 <Grid container spacing={5}>
-                  <InputField name="name" label="Name" required />
-                  <InputField name="lastName" label="Last name" required />
+                  <InputField
+                    name="name"
+                    label="Name"
+                    required
+                    valueFromLocalStorage="name"
+                    localStorageKey="shippingData"
+                  />
+
+                  <InputField
+                    name="lastName"
+                    label="Last name"
+                    required
+                    valueFromLocalStorage="lastName"
+                    localStorageKey="shippingData"
+                  />
                   <InputField
                     name="phone"
                     label="Phone number"
                     required={false}
+                    valueFromLocalStorage="phone"
+                    localStorageKey="shippingData"
                   />
                 </Grid>
               </Paper>
@@ -106,9 +121,27 @@ function ShippingForm({ checkoutToken, onSubmit }) {
               >
                 <Typography gutterBottom>Address</Typography>
                 <Grid container spacing={5}>
-                  <InputField name="street" label="Street" required />
-                  <InputField name="zipCode" label="ZIP Code" required />
-                  <InputField name="city" label="City" required />
+                  <InputField
+                    name="street"
+                    label="Street"
+                    required
+                    valueFromLocalStorage="street"
+                    localStorageKey="shippingData"
+                  />
+                  <InputField
+                    name="zipCode"
+                    label="ZIP Code"
+                    required
+                    valueFromLocalStorage="zipCode"
+                    localStorageKey="shippingData"
+                  />
+                  <InputField
+                    name="city"
+                    label="City"
+                    required
+                    valueFromLocalStorage="city"
+                    localStorageKey="shippingData"
+                  />
                   <DropdownSelector
                     selectedOption={shippingCountry}
                     id="country"

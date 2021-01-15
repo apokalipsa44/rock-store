@@ -9,6 +9,9 @@ import CheckoutSummary from "./CheckoutSummary";
 import { Container } from "@material-ui/core";
 import { StateContext } from "../../utils/Context";
 import { emptyCart } from "../../utils/Commerce";
+import { Link } from "react-router-dom";
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+
 
 function CheckoutForm() {
   const [activeStep, setActiveStep] = useState(0);
@@ -30,6 +33,7 @@ function CheckoutForm() {
 
   const submitAddressForm = (data) => {
     setShippingData(data);
+    localStorage.setItem("shippingData", JSON.stringify(data));
     console.log("address submitted", data);
     handleNextStep();
   };
@@ -38,6 +42,7 @@ function CheckoutForm() {
     event.preventDefault();
     await emptyCart();
     updateCart();
+    localStorage.removeItem("shippingData");
     console.log("payment submitted");
 
     handleNextStep();
@@ -63,6 +68,9 @@ function CheckoutForm() {
   };
   return (
     <Container>
+     <Button component={Link} to="/" variant="outlined"  >
+            <ArrowBackIcon/>
+          </Button>
       <Stepper activeStep={activeStep}>
         {steps.map((step) => (
           <Step key={step}>
