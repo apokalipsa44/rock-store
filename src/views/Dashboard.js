@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Button, Fade, Grid, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import stonesStacked from "../assets/stones/stones-stacke.png";
+import stonesStacked from "../assets/stones/stones-stacked.png";
 
 function Dashboard() {
   return (
@@ -39,7 +39,7 @@ function Dashboard() {
             alt="stones"
             style={{
               width: "450px",
-              filter: "drop-shadow(5px 5px 5px #222)",
+              // filter: "drop-shadow(5px 5px 5px #222)",
             }}
           />
         </Grid>
