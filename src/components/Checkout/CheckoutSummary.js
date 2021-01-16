@@ -11,7 +11,7 @@ function CheckoutSummary() {
 
       <Fade timeout={3500} in>
         <Box m={3}>
-          <Button component={Link} to="/" variant="contained" size="large">
+          <Button component={Link} to="/products" variant="contained" size="large">
             Back to the store
           </Button>
         </Box>

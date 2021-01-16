@@ -68,7 +68,7 @@ function CheckoutForm() {
   };
   return (
     <Container>
-     <Button component={Link} to="/" variant="outlined"  >
+     <Button component={Link} to="/products" variant="outlined"  >
             <ArrowBackIcon/>
           </Button>
       <Stepper activeStep={activeStep}>
