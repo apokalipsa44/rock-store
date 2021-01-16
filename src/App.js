@@ -7,6 +7,7 @@ import TopBar from "./views/TopBar";
 import CartDrawer from "./views/CartDrawer";
 import Checkout from "./views/Checkout";
 import Footer from "./views/Footer";
+import Dashboard from "./views/Dashboard";
 
 function App() {
   const [currentCart, setCurrentCart] = useState({});
@@ -43,7 +44,8 @@ function App() {
         <TopBar />
         <CartDrawer />
         <Switch>
-          <Route exact path="/" component={Products} />
+          <Route exact path="/" component={Dashboard} />
+          <Route exact path="/products" component={Products} />
           <Route exact path="/checkout" component={Checkout} />
         </Switch>
         {/* <Footer/> */}

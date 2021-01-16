@@ -35,7 +35,7 @@ function TopBar() {
                     style={{ fontFamily: "Stone Hinge" }}
                     variant="h2"
                   >
-                    {" "}
+                    
                     Rock Store
                   </Typography>
                 </Grid>
