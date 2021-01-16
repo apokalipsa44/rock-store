@@ -7,9 +7,9 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
-import QuantityCounter from "./QuantityCounter";
-import commerce from "../utils/Commerce";
-import {StateContext}  from "../utils/Context";
+import QuantityCounter from "./components/QuantityCounter";
+import commerce from "../../utils/Commerce";
+import {StateContext}  from "../../utils/Context";
 
 function ProductItem({ product }) {
   const { updateCart } = useContext(StateContext);

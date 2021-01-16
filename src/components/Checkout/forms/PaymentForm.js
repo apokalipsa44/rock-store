@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Grid, Paper, Typography, Divider } from "@material-ui/core";
-import CartItems from "../../CartItems";
+import CartItems from "../../cart/CartItems";
 import PaymentMethod from "./components/PaymentMethod";
 
 function PaymentForm({ onSubmit, shippingData, cart }) {

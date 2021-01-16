@@ -1,7 +1,7 @@
 import {  Button, Container, Typography, Box } from "@material-ui/core";
 import React, { useContext } from "react";
 import CartItems from "./CartItems";
-import { StateContext } from "../utils/Context";
+import { StateContext } from "../../utils/Context";
 import { Link } from "react-router-dom";
 
 function Cart({toggleDrawer}) {
