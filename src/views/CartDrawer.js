@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Drawer from "@material-ui/core/Drawer";
-import Cart from "../components/Cart";
+import Cart from "../components/cart/Cart";
 import { StateContext } from "../utils/Context";
 
 function CartDrawer() {

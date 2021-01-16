@@ -1,5 +1,5 @@
 import { Grid } from "@material-ui/core";
-import ProductItem from "../components/ProductItem";
+import ProductItem from "../components/products/ProductItem";
 import { useContext } from "react";
 import {StateContext}  from "../utils/Context";
 
