@@ -7,9 +7,9 @@ import {
   MenuItem,
   Box,
 } from "@material-ui/core";
-import _ from 'lodash'
+import _ from "lodash";
 
-function DropdownSelector({  id, label, options, onChange, selectedOption }) {
+function DropdownSelector({ id, label, options, onChange, selectedOption }) {
   const [itemLabels, setItemLabels] = useState([]);
 
   useEffect(() => {
@@ -31,23 +31,25 @@ function DropdownSelector({  id, label, options, onChange, selectedOption }) {
 
   return (
     <Grid item xs={12} sm={6}>
-    <Box width={1}>
-      <FormControl style={{width:"100%"}} >
-        <InputLabel htmlFor={id}>{label}</InputLabel>
-        <Select value={setSelectComponentValue()} onChange={onChange}>
-     
-          {itemLabels &&
-            itemLabels.map(object => {
-              return (
-                <MenuItem key={Object.keys(object)} value={object}>
-                  {Object.values(object)}
-                </MenuItem>
-              );
-            })}
-        </Select>
-      </FormControl>
-    </Box>
-      
+      <Box width={1}>
+        <FormControl style={{ width: "100%" }}>
+          <InputLabel htmlFor={id}>{label}</InputLabel>
+          <Select
+            value={setSelectComponentValue()}
+            onChange={onChange}
+            defaultValue=""
+          >
+            {itemLabels &&
+              itemLabels.map((object) => {
+                return (
+                  <MenuItem key={Object.keys(object)} value={object}>
+                    {Object.values(object)}
+                  </MenuItem>
+                );
+              })}
+          </Select>
+        </FormControl>
+      </Box>
     </Grid>
   );
 }
