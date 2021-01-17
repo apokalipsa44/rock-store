@@ -8,10 +8,11 @@ import {
   fetchRates,
   fetchZones,
 } from "../../../utils/Commerce";
+import _ from "lodash";
 
 function ShippingForm({ checkoutToken, onSubmit }) {
   const methods = useForm();
-  console.log("methods: ", methods);
+  // console.log("methods: ", methods);
   const [countries, setCountries] = useState([]);
   const [shippingCountry, setShippingCountry] = useState({});
   const [shippingZones, setShippingZones] = useState({});
@@ -24,21 +25,26 @@ function ShippingForm({ checkoutToken, onSubmit }) {
     setCountries(countries);
   };
   const updateZones = async (countryCode) => {
-    const shippingZone = await fetchZones(countryCode);
-    setShippingZones(shippingZone);
+    if (!_.isEmpty(shippingCountry)) {
+      console.log("shippingCountry from update zones", shippingCountry);
+      const shippingZone = await fetchZones(countryCode);
+      setShippingZones(shippingZone);
+    }
   };
   const updateRates = async (
     checkoutTokenId,
     shippingCountry,
     shippingZone
   ) => {
-    const rates = await fetchRates(
-      checkoutTokenId,
-      shippingCountry,
-      shippingZone
-    );
-    setShippingRates(rates);
-    if (rates) setShippingCost(rates[0].price.raw);
+    if (!_.isEmpty(shippingZone)) {
+      const rates = await fetchRates(
+        checkoutTokenId,
+        shippingCountry,
+        shippingZone
+      );
+      setShippingRates(rates);
+      if (rates) setShippingCost(rates[0].price.raw);
+    }
   };
 
   useEffect(() => {
