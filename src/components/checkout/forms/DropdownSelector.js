@@ -7,6 +7,7 @@ import {
   MenuItem,
   Box,
 } from "@material-ui/core";
+import _ from 'lodash'
 
 function DropdownSelector({  id, label, options, onChange, selectedOption }) {
   const [itemLabels, setItemLabels] = useState([]);
@@ -24,12 +25,16 @@ function DropdownSelector({  id, label, options, onChange, selectedOption }) {
     }
   }, [options]);
 
+  const setSelectComponentValue = (selectedOption, itemLabels) => {
+    _.pullAllWith(itemLabels, [selectedOption], !_.isEqual);
+  };
+
   return (
     <Grid item xs={12} sm={6}>
     <Box width={1}>
       <FormControl style={{width:"100%"}} >
         <InputLabel htmlFor={id}>{label}</InputLabel>
-        <Select value={selectedOption} onChange={onChange}>
+        <Select value={setSelectComponentValue()} onChange={onChange}>
      
           {itemLabels &&
             itemLabels.map(object => {
