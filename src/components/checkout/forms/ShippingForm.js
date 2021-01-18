@@ -12,7 +12,8 @@ import {
 import _ from "lodash";
 
 function ShippingForm({ onSubmit }) {
-  const {checkoutToken} = useContext(StateContext);
+  const { checkoutToken } = useContext(StateContext);
+  const { updateCheckoutToken } = useContext(StateContext);
 
   const methods = useForm();
   const [countries, setCountries] = useState([]);
@@ -21,9 +22,7 @@ function ShippingForm({ onSubmit }) {
   const [shippingZone, setShippingZone] = useState({});
   const [shippingRates, setShippingRates] = useState([]);
   const [shippingCost, setShippingCost] = useState(0);
-  
 
-  
   const updateCountries = async (checkoutToken) => {
     if (!_.isEmpty(checkoutToken)) {
       const countries = await fetchCountries(checkoutToken);
@@ -52,6 +51,11 @@ function ShippingForm({ onSubmit }) {
       if (rates) setShippingCost(rates[0].price.raw);
     }
   };
+  useEffect(() => {
+    (async () => {
+      await updateCheckoutToken();
+    })();
+  }, []);
 
   useEffect(() => {
     if (checkoutToken) updateCountries(checkoutToken.id);

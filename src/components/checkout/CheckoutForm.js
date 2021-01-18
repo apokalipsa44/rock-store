@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import ShippingForm from "./forms/ShippingForm";
 import PaymentForm from "./forms/PaymentForm";
 import CheckoutSummary from "./forms/CheckoutSummary";
-import { Box, Container, Typography } from "@material-ui/core";
+import {  Container  } from "@material-ui/core";
 import { StateContext } from "../../utils/Context";
 import { emptyCart } from "../../utils/Commerce";
 import { Link } from "react-router-dom";
@@ -60,14 +60,14 @@ function CheckoutForm() {
   };
   return (
     <Container>
-      {activeStep === 2 ?(
+      {activeStep === 2 ? (
         <div></div>
-      ) :(
+      ) : (
         <Button component={Link} to="/products" variant="outlined">
           <ArrowBackIcon />
           Return to the store
         </Button>
-      )  }
+      )}
 
       <Stepper activeStep={activeStep}>
         {steps.map((step) => (
