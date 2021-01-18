@@ -21,8 +21,10 @@ function ShippingForm({ checkoutToken, onSubmit }) {
   const [shippingCost, setShippingCost] = useState(0);
 
   const updateCountries = async (checkoutToken) => {
-    const countries = await fetchCountries(checkoutToken);
+    if(!_.isEmpty(checkoutToken)){
+        const countries = await fetchCountries(checkoutToken);
     setCountries(countries);
+    }
   };
   const updateZones = async (countryCode) => {
     if (!_.isEmpty(shippingCountry)) {

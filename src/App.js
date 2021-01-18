@@ -6,7 +6,7 @@ import Products from "./views/Products";
 import TopBar from "./views/TopBar";
 import CartDrawer from "./views/CartDrawer";
 import Checkout from "./views/Checkout";
-import Footer from "./views/Footer";
+// import Footer from "./views/Footer";
 import Dashboard from "./views/Dashboard";
 
 function App() {
