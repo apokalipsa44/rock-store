@@ -38,6 +38,25 @@ export const useCart = () => {
   return cart;
 };
 
+export const useCheckoutToken = () => {
+  const [checkoutToken, setCheckoutToken] = useState({});
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const token = await commerce.checkout.generateTokenFrom(
+          "cart",
+          commerce.cart.id()
+        );
+        setCheckoutToken(token);
+      } catch (error) {
+        console.log("error", error);
+      }
+    })();
+  }, []);
+  return checkoutToken;
+};
+
 export const fetchCheckoutToken = async () => {
   let token = {};
   try {
@@ -45,6 +64,7 @@ export const fetchCheckoutToken = async () => {
       "cart",
       commerce.cart.id()
     );
+    console.log("token", token);
   } catch (error) {
     console.log("error", error);
   }
@@ -66,8 +86,6 @@ export const fetchZones = async (countryCode) => {
     const { subdivisions } = await commerce.services.localeListSubdivisions(
       countryCode
     );
-
-    console.log("subdivisions", subdivisions);
     return subdivisions;
   } catch (error) {
     console.log("error", error);

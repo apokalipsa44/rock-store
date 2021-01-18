@@ -3,9 +3,9 @@ import { Box, Grid, Paper, Typography, Divider } from "@material-ui/core";
 import CartItems from "../../cart/CartItems";
 import PaymentMethod from "./components/PaymentMethod";
 
-function PaymentForm({ onSubmit, shippingData, cart }) {
-  const { line_items } = cart.currentCart;
-  const { subtotal } = cart.currentCart;
+function PaymentForm({ onSubmit, shippingData, currentCart }) {
+  const { line_items } = currentCart;
+  const { subtotal } = currentCart;
   console.log("line_items", line_items);
   console.log("subtotal", subtotal);
   const {

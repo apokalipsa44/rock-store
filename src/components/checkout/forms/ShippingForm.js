@@ -1,5 +1,6 @@
 import { Container, Grid, Paper, Typography } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { StateContext } from "./../../../utils/Context";
 import { useForm, FormProvider } from "react-hook-form";
 import InputField from "./components/InputField";
 import DropdownSelector from "./components/DropdownSelector";
@@ -10,25 +11,28 @@ import {
 } from "../../../utils/Commerce";
 import _ from "lodash";
 
-function ShippingForm({ checkoutToken, onSubmit }) {
+function ShippingForm({ onSubmit }) {
+  const {checkoutToken} = useContext(StateContext);
+
   const methods = useForm();
-  // console.log("methods: ", methods);
   const [countries, setCountries] = useState([]);
   const [shippingCountry, setShippingCountry] = useState({});
   const [shippingZones, setShippingZones] = useState({});
   const [shippingZone, setShippingZone] = useState({});
   const [shippingRates, setShippingRates] = useState([]);
   const [shippingCost, setShippingCost] = useState(0);
+  
 
+  
   const updateCountries = async (checkoutToken) => {
-    if(!_.isEmpty(checkoutToken)){
-        const countries = await fetchCountries(checkoutToken);
-    setCountries(countries);
+    if (!_.isEmpty(checkoutToken)) {
+      const countries = await fetchCountries(checkoutToken);
+      setCountries(countries);
     }
   };
+
   const updateZones = async (countryCode) => {
     if (!_.isEmpty(shippingCountry)) {
-      console.log("shippingCountry from update zones", shippingCountry);
       const shippingZone = await fetchZones(countryCode);
       setShippingZones(shippingZone);
     }
