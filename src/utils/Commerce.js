@@ -40,6 +40,7 @@ export const useCart = () => {
 
 export const useCheckoutToken = () => {
   const [checkoutToken, setCheckoutToken] = useState({});
+  
 
   useEffect(() => {
     (async () => {

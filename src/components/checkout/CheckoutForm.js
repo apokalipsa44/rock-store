@@ -6,18 +6,17 @@ import Button from "@material-ui/core/Button";
 import ShippingForm from "./forms/ShippingForm";
 import PaymentForm from "./forms/PaymentForm";
 import CheckoutSummary from "./forms/CheckoutSummary";
-import { Container } from "@material-ui/core";
+import { Box, Container, Typography } from "@material-ui/core";
 import { StateContext } from "../../utils/Context";
 import { emptyCart } from "../../utils/Commerce";
 import { Link } from "react-router-dom";
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 function CheckoutForm() {
   const [activeStep, setActiveStep] = useState(0);
   const [shippingData, setShippingData] = useState({});
   const { updateCart } = useContext(StateContext);
-  const {currentCart} = useContext(StateContext);
+  const { currentCart } = useContext(StateContext);
 
   const steps = ["Shipment details", "Payment details"];
 
@@ -48,12 +47,7 @@ function CheckoutForm() {
   };
 
   const renderForm = () => {
-    if (activeStep === 0)
-      return (
-        <ShippingForm
-          onSubmit={submitAddressForm}
-        />
-      );
+    if (activeStep === 0) return <ShippingForm onSubmit={submitAddressForm} />;
     if (activeStep === 1)
       return (
         <PaymentForm
@@ -66,9 +60,15 @@ function CheckoutForm() {
   };
   return (
     <Container>
-     <Button component={Link} to="/products" variant="outlined"  >
-            <ArrowBackIcon/>
-          </Button>
+      {activeStep === 2 ?(
+        <div></div>
+      ) :(
+        <Button component={Link} to="/products" variant="outlined">
+          <ArrowBackIcon />
+          Return to the store
+        </Button>
+      )  }
+
       <Stepper activeStep={activeStep}>
         {steps.map((step) => (
           <Step key={step}>
