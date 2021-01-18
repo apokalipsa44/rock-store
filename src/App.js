@@ -15,19 +15,22 @@ function App() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const products = useProducts();
 
-  useEffect(() => {
-    updateCart();
-    updateCheckoutToken();
-  }, []);
-
   const updateCart = async () => {
     const cart = await fetchCart();
     setCurrentCart(cart);
   };
+
   const updateCheckoutToken = async () => {
-    const token = await fetchCheckoutToken();
-    setCheckoutToken(token);
+    if (!currentCart.total_items === 0) {
+      const token = await fetchCheckoutToken();
+      setCheckoutToken(token);
+    }
   };
+
+  useEffect(() => {
+    updateCart();
+    updateCheckoutToken(currentCart);
+  }, []);
 
   const state = {
     currentCart,

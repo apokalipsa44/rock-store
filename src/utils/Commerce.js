@@ -74,7 +74,6 @@ export const fetchZones = async (countryCode) => {
   }
 };
 export const fetchRates = async (checkoutTokenId, country, region) => {
-  console.log('checkoutTokenId', checkoutTokenId)
   try {
     const options = await commerce.checkout.getShippingOptions(
       checkoutTokenId,
@@ -84,8 +83,6 @@ export const fetchRates = async (checkoutTokenId, country, region) => {
       }
     );
 
-
-    console.log("subdivisions>>", options);
     return options;
   } catch (error) {
     console.log("error", error);
@@ -102,9 +99,8 @@ export async function fetchCart() {
   return cart;
 }
 
-export async function emptyCart(){
-  await  commerce.cart.empty()
-
+export async function emptyCart() {
+  await commerce.cart.empty();
 }
 
 export default commerce;
