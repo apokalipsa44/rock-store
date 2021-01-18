@@ -1,8 +1,8 @@
 import { Container, Grid, Paper, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
-import InputField from "./InputField";
-import DropdownSelector from "./DropdownSelector";
+import InputField from "./components/InputField";
+import DropdownSelector from "./components/DropdownSelector";
 import {
   fetchCountries,
   fetchRates,

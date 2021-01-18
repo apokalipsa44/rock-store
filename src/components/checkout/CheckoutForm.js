@@ -5,7 +5,7 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import ShippingForm from "./forms/ShippingForm";
 import PaymentForm from "./forms/PaymentForm";
-import CheckoutSummary from "./CheckoutSummary";
+import CheckoutSummary from "./forms/CheckoutSummary";
 import { Container } from "@material-ui/core";
 import { StateContext } from "../../utils/Context";
 import { emptyCart } from "../../utils/Commerce";
