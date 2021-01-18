@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fetchCart, useProducts, fetchCheckoutToken } from "./utils/Commerce";
+import { fetchCart, useProducts,  useCheckoutToken } from "./utils/Commerce";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { StateContext } from "./utils/Context";
 import Products from "./views/Products";
@@ -11,26 +11,21 @@ import Dashboard from "./views/Dashboard";
 
 function App() {
   const [currentCart, setCurrentCart] = useState({});
-  const [checkoutToken, setCheckoutToken] = useState();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const products = useProducts();
-
+  const checkoutToken=useCheckoutToken()
+  
   const updateCart = async () => {
     const cart = await fetchCart();
     setCurrentCart(cart);
   };
 
-  const updateCheckoutToken = async () => {
-    if (!currentCart.total_items === 0) {
-      const token = await fetchCheckoutToken();
-      setCheckoutToken(token);
-    }
-  };
-
+  
   useEffect(() => {
     updateCart();
-    updateCheckoutToken(currentCart);
   }, []);
+  
+ 
 
   const state = {
     currentCart,

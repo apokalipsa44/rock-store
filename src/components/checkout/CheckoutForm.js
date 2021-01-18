@@ -16,9 +16,8 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 function CheckoutForm() {
   const [activeStep, setActiveStep] = useState(0);
   const [shippingData, setShippingData] = useState({});
-  const { checkoutToken } = useContext(StateContext);
   const { updateCart } = useContext(StateContext);
-  const cart = useContext(StateContext);
+  const {currentCart} = useContext(StateContext);
 
   const steps = ["Shipment details", "Payment details"];
 
@@ -52,14 +51,13 @@ function CheckoutForm() {
     if (activeStep === 0)
       return (
         <ShippingForm
-          checkoutToken={checkoutToken}
           onSubmit={submitAddressForm}
         />
       );
     if (activeStep === 1)
       return (
         <PaymentForm
-          cart={cart}
+          currentCart={currentCart}
           onSubmit={submitPaymentForm}
           shippingData={shippingData}
         />
