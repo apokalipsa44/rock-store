@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { fetchCart, useProducts,  useCheckoutToken } from "./utils/Commerce";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { fetchCart, useProducts,  useCheckoutToken } from "./utils/Commerce";
 import { StateContext } from "./utils/Context";
 import Products from "./views/Products";
 import TopBar from "./views/TopBar";

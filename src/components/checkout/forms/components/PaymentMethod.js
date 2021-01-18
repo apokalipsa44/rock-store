@@ -10,7 +10,7 @@ import { Grid, Typography } from "@material-ui/core";
 import WireTransfer from "./WireTransfer";
 
 function PaymentMethod() {
-  const [value, setValue] = useState("card");
+  const [value, setValue] = useState("");
 
   const handleChange = (event) => {
     setValue(event.target.value);
