@@ -8,8 +8,7 @@ Working version here: [https://rock-store.herokuapp.com](https://rock-store.hero
 
 ---
 ## Technologies used
-![](img/react-logo.png) ![](img/material.png) ![](img/commerce.jpg)
-
+<img src="img/react-logo.png" alt="react logo" width="40px"/> <img src="img/material.png" alt="material logo" width="40px"/> <img src="img/commerce.jpg" alt="commerce logo" width="40px"/>
 
 ## Shipping and payment forms
 These are just mockups, I don't won't anybody to buy any rocks from me.  
